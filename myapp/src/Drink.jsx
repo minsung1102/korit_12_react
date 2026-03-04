@@ -1,4 +1,13 @@
-export default function Drink(props) {
+import HeaderText from "./HeaderText"
 
-    return <h1>Would you like to drink some {props.drink}?</h1>
+export default function Drink({drink}) {
+
+  return (
+    <>
+      <h1>
+        Would you like to drink some {drink} ?
+        <HeaderText text='추가텍스트' />
+      </h1>
+    </>
+  )
 }
