@@ -4,6 +4,8 @@ import { useState } from "react";
 import { addCar } from "../api/carapi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import CarDialogContent from "./CarDialogContent";
+
 export default function AddCar() {
   const queryClient = useQueryClient();
 
@@ -46,30 +48,10 @@ export default function AddCar() {
 
   return(
     <>
-      <button onClick={handleClickOpen}>New Car</button>
+      <Button color="primary" onClick={handleClickOpen}>New Car</Button>
       <Dialog open={open} onClose={handleClickClose}>
         <DialogTitle>New Car</DialogTitle>
-        <DialogContent>
-          <TextField value={car.brand} label='브랜드명' margin="dense" fullWidth
-            onChange={ e => setCar({...car, brand: e.target.value})}
-          />
-          <TextField value={car.model} label='모델명' margin="dense" fullWidth
-            onChange={ e => setCar({...car, model: e.target.value})}
-          />
-          <TextField value={car.color} label='색상' margin="dense" fullWidth
-            onChange={ e => setCar({...car, color: e.target.value})}
-          />
-          <TextField value={car.registrationNumber} label='차량번호' margin="dense" fullWidth
-            onChange={ e => setCar({...car, registrationNumber: e.target.value})}
-          />
-          <TextField value={car.modelYear} label='모델 년도' margin="dense" fullWidth
-            onChange={ e => setCar({...car, modelYear:Number(e.target.value)})}
-          />
-          <TextField value={car.price} label='가격' margin="dense" fullWidth
-            onChange={ e => setCar({...car, price:Number(e.target.value)})}
-          />
-
-        </DialogContent>
+        <CarDialogContent car={car} handleChange={handleChange}/>
         <DialogActions>
           <Button color="error" onClick={handleClickClose}>취소</Button>
           <Button color="primary" onClick={handleSave}>저장</Button>
